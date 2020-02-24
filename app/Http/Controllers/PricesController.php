@@ -8,14 +8,16 @@ use GuzzleHttp\Client;
 
 class PricesController extends Controller
 {
-    public function index(){
+    public function index($currencyId){
     
         // Retrieve information about the bitcoin currency
-        $bitcoinInfo = $this->getCryptoCurrencyInformation("bitcoin");
+        $currencyIdInfo = $this->getCryptoCurrencyInformation($currencyId);
 
-        return view('show', [
-            'bitcoinInfo' => $bitcoinInfo
-        ]);
+        return response()->json([ $currencyId . ' Price' => $currencyIdInfo['price_usd'] ]);
+
+        // return view('show', [
+        //     'bitcoinInfo' => $bitcoinInfo
+        // ]);
     }
 
     private function getCryptoCurrencyInformation($currencyId, $convertCurrency = "USD"){
