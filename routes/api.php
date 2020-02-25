@@ -17,4 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/get-price/{currencyId}', 'PricesController@index');
+Route::get('/get-price', 'PricesController@getPrice');
+
+Route::post('/get-price', 'PricesController@postPrice');
+
+//Route::get('/get-price/{currencyId}', 'PricesController@index');
